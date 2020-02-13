@@ -2,6 +2,8 @@ var path = require('path');
 const express = require('express');
 const mockAPIResponse = require('./mockAPI.js');
 const bodyParser = require('body-parser');
+const dotenv = require('dotenv');
+dotenv.config({path: './.env'})
 //Aylien API
 const AylienAPI = require('aylien_textapi');
 
@@ -9,29 +11,29 @@ const AylienAPI = require('aylien_textapi');
 const textAPI = new AylienAPI({
     application_id: process.env.API_ID,
     application_key: process.env.API_KEY
-});
+})
+console.log(process.env.API_ID)
+
 //set aylien API credentials
-const dotenv = require('dotenv');
-dotenv.config({path: '../../.env'})
 
-
+console.log('wehere')
 const app = express()
 
 //middleware
-app.use(bodyParser.urlencoded({ extended: false}));
+app.use(bodyParser.urlencoded({ extended: false}))
 app.use(bodyParser.json());
 app.use(express.static('dist'))
 
-
 app.get('/', (req, res) => {
-    res.sendFile('dist/index.html')
+    res.sendFile(path.resolve('dist/index.html'))
 })
 
 app.post('/testing', async(req, res, next) => {
     try {
-        var data = textapi.sentiment({
+        var data = textAPI.sentiment({
             'text': req.body.theText
         }, function(error, response) {
+          console.log(response, error)
             if (error === null) {
                 console.log(response);
                 res.send(response);

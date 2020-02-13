@@ -4,11 +4,9 @@
     <head>
         <meta charset="utf-8">
         <title>Evaluate news article with NLP</title>
-
     </head>
 
     <body>
-
         <header>
             <h1>
                 news article NLP
@@ -23,21 +21,23 @@
                 and computational linguistics, in its pursuit to fill the gap between
                 human communication and computer understanding.
               </p>
-        
+
               <p>
                 The Aylien Text Analysis API provides powerful and flexible AI-driven
                 content analysis solutions that bring the power of NLP to the masses. We
                 help developers, data scientists, and marketers understand
                 human-generated textual content at scale.
               </p>
-              
+
             <section>
-                <form class="" onsubmit="return handleSubmit(event)">
-                    <input id="name" type="text" name="input" value="" onblur="onBlur()" placeholder="Name">
-                    <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
+                <form class="" onsubmit="Client.handleSubmit(event)">
+                    <input id="name" type="text" name="input" value="" onkeydown="Client.checkForName(event)" placeholder="Name">
+                    <input type="submit" name="" value="submit" onsubmit="Client.handleSubmit(event)">
                 </form>
             <section>
-
+            <section>
+                <div id="error" class="error"></div>
+            </section>
             <section>
                 <strong>Form Results:</strong>
                 <div id="results"></div>
